@@ -33,23 +33,32 @@ public class BinaryTree {
 		this.root = new BinaryTreeNode<Integer>(t); 
 	}
 	
-	public void addChild(Integer value) {
-		 if (value.compareTo(t) > 0) {
-			 if (rightChild == null) {
-				 rightChild = new BinaryTree(value); 
+    public void addChild(Integer value,  BinaryTreeNode<Integer> node ) {
+		if (node == null) {
+			// start at the root
+			node = this.root; 
+		}
+		 if (value.compareTo((Integer) node.getData()) > 0) {
+			 if (node.getRightChild() == null) {
+				 node.setRightChild(new BinaryTreeNode<Integer>(value)); 
 			 } else {
-				 rightChild.addChild(value);
+				 // add to the right child
+				 addChild(value, node.getRightChild());
 			 }
-		 } else if (value.compareTo(t) == 0) {
-			 // do nothing
+		 } else if (value.compareTo((Integer) node.getData()) == 0) {
+			 // do nothing, we already have that node
+			 return; 
 		 } else {
-			 if (leftChild == null) {
-				 leftChild = new BinaryTree(value); 
+			 if (node.getLeftChild() == null) {
+				 node.setLeftChild(new BinaryTreeNode<Integer>(value)); 
 			 } else {
-				 leftChild.addChild(value);
+				 // add to the left child
+				 addChild(value, node.getLeftChild());
 			 }
 		 }
+		 return; 
 	}
+	
 	
 	// Walk the tree and find the value if it exists, otherwise return false
 	public boolean containsValue(Integer value) {
