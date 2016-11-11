@@ -59,40 +59,46 @@ public class BinaryTree {
 		 return; 
 	}
 	
-	
-	// Walk the tree and find the value if it exists, otherwise return false
-	public boolean containsValue(Integer value) {
-		int compVal = value.compareTo(t);
+
+// Walk the tree and find the value if it exists, otherwise return false
+	public boolean containsValue(Integer value, BinaryTreeNode<Integer> node) {
+		if (node == null)
+			node = this.root;
+		
+		int compVal = value.compareTo((Integer) node.getData());
 		if (compVal == 0) {
 			return true; 
 		} else if (compVal > 0) {
-			if (rightChild == null) {
+			if (node.getRightChild() == null) {
 				return false; 
 			} else {
-		      return rightChild.containsValue(value);
+		      return containsValue(value, node.getRightChild());
 			}
 		} else {
-			 if (leftChild == null) {
+			 if (node.getLeftChild() == null) {
 				return false; 
 			 } else {
-			    return leftChild.containsValue(value);
+			    return containsValue(value, node.getLeftChild());
 			 }
 		}
 	}
-	
+
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		BinaryTree root = new BinaryTree(100);
-		root.addChild(110);
-		root.addChild(50);
-		root.addChild(25);
-		root.addChild(75);
+		root.addChild(110, null);
+		root.addChild(50, null);
+		root.addChild(25, null);
+		root.addChild(75, null);
 		
 		int value = 26; 
-		System.out.println("Found value " + value + " = " + root.containsValue(value));
-	}
+		System.out.println("Found value " + value + " = " + root.containsValue(new Integer(value), null));
 
+	    value = 50; 
+		System.out.println("Found value " + value + " = " + root.containsValue(new Integer(value), null));
+
+	}
 }
