@@ -12,6 +12,7 @@ public class ShortestPath {
 	// Create two arrays, visited and unvisited Vertices
 	HashMap<Integer, Vertex> visited = new HashMap<Integer, Vertex>();
 	HashMap<Integer, Vertex> unvisited = new HashMap<Integer, Vertex>();
+	HashMap<Integer, Integer> predecessors = new HashMap<Integer, Integer>();
 	int startIndex;
 	int endIndex; 
 
@@ -59,10 +60,11 @@ public class ShortestPath {
 	
 				// Now add the distance from the edge to the source distance to update the otherVertex distance
 				int newDistance = currentVertex.getDistance() + edge.getWeight();
-				// only update distances for unvisited vertices
-				if (unvisited.containsKey(otherVertex.getId())) {
-					System.out.println("Updating vertex:" + otherVertex.getId() + " ,distance:" + newDistance); 
-					otherVertex.setDistance(newDistance);  
+				// only update if the new distance is less than the old distance
+				if (newDistance < otherVertex.getDistance()) {
+					System.out.println("Updating distance for vertex:" + otherVertex.getId() + " ,distance:" + newDistance); 
+					otherVertex.setDistance(newDistance); 
+					predecessors.put(otherVertex.getId(), currentVertex.getId()); 
 				}
 			}
 		}    
@@ -72,8 +74,16 @@ public class ShortestPath {
 	 */
 	public List<Vertex> getShortestPath() {
 		LinkedList<Vertex> result = new LinkedList<Vertex>(); 
-		System.out.println("Shortest path");
-		System.out.println(visited.get(endIndex).getDistance()); 
+		System.out.println("Shortest path distance: " + vertices.get(endIndex).getDistance());
+		int currentId = endIndex;
+		System.out.println(currentId); 
+	
+		while(predecessors.get(currentId) != null) {
+			 int nextId = predecessors.get(currentId); 	
+			 System.out.println(nextId); 
+			 currentId = nextId; 
+	    }
+	   
 		
 		result.add(visited.get(endIndex));
 		return result;
@@ -147,6 +157,15 @@ public class ShortestPath {
     	Edge edge2 = new Edge(source, v2, 3);
     	source.addEdge(edge2);
     	v2.addEdge(edge2);
+    	// add v3 which connects to both v1 and v2 - i.e. a diamond shape
+    	Vertex v3 = new Vertex(3, Integer.MAX_VALUE);
+    	vertices.put(v3.getId(), v3); 
+    	Edge edge31 = new Edge(v3, v1, 2);
+    	v1.addEdge(edge31);
+    	v3.addEdge(edge31);
+    	Edge edge32 = new Edge(v3, v1, 2);
+    	v2.addEdge(edge32);
+    	v3.addEdge(edge32);
     	
     	// add all the vertices to unvisited
     	unvisited.putAll(vertices);
@@ -160,7 +179,7 @@ public class ShortestPath {
 		ShortestPath sp = new ShortestPath(vertices, edges); 
 		sp.createGraph();
 		int startVertex = 0;
-		int endVertex = 1; 
+		int endVertex = 3; 
 		sp.doit1(startVertex, endVertex); 
 		sp.getShortestPath();
 	}
@@ -233,3 +252,4 @@ public class ShortestPath {
 
 	}  // end Edge
 }
+
