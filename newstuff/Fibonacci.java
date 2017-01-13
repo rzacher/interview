@@ -8,6 +8,8 @@ import java.util.*;
 
 public class Fibonacci {
 
+  HashMap<Integer, Long> fibMap = new HashMap<>(); 
+
   public Fibonacci() {
   
   }
@@ -15,12 +17,16 @@ public class Fibonacci {
   public long getFibNum(int n) {
     if (n<=1) {
       return 1; 
+    } else if (fibMap.containsKey(n)) {
+      long value = fibMap.get(n);
+      return value; 
     } else {
        long value = getFibNum(n-1) + getFibNum(n-2); 
        if (value < 0) {
        	 System.out.println("the value overflowed the limit for a long number");
          return 0; 
        } else {
+         fibMap.put(n, value); 
          return value; 
        }
     }
