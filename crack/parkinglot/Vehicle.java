@@ -1,6 +1,6 @@
 import java.util.*;
 
-public abstract class {
+public abstract class Vehicle {
 
   Size size;
   int spotsNeeded;
@@ -11,7 +11,7 @@ public abstract class {
   } 
 
   Size getSize() {
-    return size
+    return size;
   }
 
   void park(ArrayList<Spot> spots) {
@@ -20,12 +20,10 @@ public abstract class {
   }
 
   // Return the list of spots that I'm leaving
-  ArrayList<Spot> leave()  {
-  // Clone the spots. empty these spots. and return the clones.
+  public ArrayList<Spot> leave()  {
+      // Clone the spots. empty these spots. and return the clones.
       ArrayList<Spot> spotClones = new ArrayList<Spot>(spots);
-      spots.clear()
+      spots.clear(); 
       return spotClones;
   }
-  
-
 }

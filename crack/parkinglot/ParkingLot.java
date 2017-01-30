@@ -1,15 +1,16 @@
-import java.util.*
+import java.util.*;
 
 public class ParkingLot {
 
   HashMap<Integer, Level> levels = new HashMap<>(); 
  
-  parkVehicle(Vehicle vehicle) {
+  public Ticket parkVehicle(Vehicle vehicle) {
 
      // Walk the levels, starting at the bottom and find matching spots.
+     return new Ticket(); 
   }
      
-  retrieveVehicle(Ticket ticket) {
+  public void retrieveVehicle(Ticket ticket) {
 
   }
 }
