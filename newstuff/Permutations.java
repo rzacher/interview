@@ -42,6 +42,20 @@ public class Permutations {
        
       return mergedWords; 
     }
+    
+    // Method from http://introcs.cs.princeton.edu/java/23recursion/Permutations.java.html
+    
+    // print n! permutation of the characters of the string s (in order)
+    public  static void perm1(String s) { perm1("", s); }
+    private static void perm1(String prefix, String s) {
+        int n = s.length();
+        if (n == 0) System.out.println(prefix);
+        else {
+            for (int i = 0; i < n; i++)
+               perm1(prefix + s.charAt(i), s.substring(0, i) + s.substring(i+1, n));
+        }
+
+    }
 
     public static void main(String args[]) {
       String source = "abc";
@@ -53,6 +67,9 @@ public class Permutations {
       for (String word: permList) {
         System.out.println(word); 
       }
+      System.out.println("************");
+      Permutations.perm1(source); 
+      
     
     }
 }
