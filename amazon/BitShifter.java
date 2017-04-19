@@ -27,4 +27,5 @@ public class BitShifter {
 		BitShifter shifter = new BitShifter();
 		shifter.doit(); 
 	}
+}
 

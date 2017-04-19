@@ -18,7 +18,7 @@ public class SelectionSort {
     System.out.println(""); 
   }
 
-  public sort() {
+  public void  sort() {
     for (int i=0; i<array.length; i++) {
        int iMin = i; // init 
 
@@ -31,7 +31,7 @@ public class SelectionSort {
 
   } // end sort
 
-  private swap(int i, int j) {
+  private void swap(int i, int j) {
     int temp = array[i];
     array[i] = array[j];
     array[j] = temp; 

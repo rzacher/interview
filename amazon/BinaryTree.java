@@ -1,33 +1,7 @@
 package amazon;
 
 public class BinaryTree {
-	BinaryTreeNode root; 
-
-	private class BinaryTreeNode<N extends Number> {
-		N n;
-		BinaryTreeNode leftChild;
-		BinaryTreeNode rightChild;
-		
-		public BinaryTreeNode(N n) {
-			this.n = n;
-		}
-		
-		public N getData() { return n; }
-		
-		public void setLeftChild(BinaryTreeNode<N> node) {
-			this.leftChild = node; 
-		}
-		
-		public BinaryTreeNode getLeftChild() {
-			return leftChild;  
-		}
-		
-		public BinaryTreeNode getRightChild() {
-			return rightChild; 
-		}
-		
-	}
-	
+	public final BinaryTreeNode<Integer> root; 
 	
 	public BinaryTree(Integer t) {
 		this.root = new BinaryTreeNode<Integer>(t); 
