@@ -1,0 +1,48 @@
+package newstuff;
+
+import java.util.*;
+import amazon.BinaryTree;
+import amazon.BinaryTreeNode; 
+
+public class SubTree  {
+   
+   private void traverseInOrder(BinaryTreeNode<Integer> node, StringBuilder sb) {
+       if (node != null) {
+          sb.append(node.getData());
+          traverseInOrder(node.getLeftChild(), sb);
+          traverseInOrder(node.getRightChild(), sb);
+       } else {
+         sb.append('x');  
+       }
+       return; 
+   }
+
+
+   public static void main(String[] args) {
+       SubTree st = new SubTree();
+   
+       BinaryTree bigTree = new BinaryTree(5);
+       bigTree.addChild(1, null);
+       bigTree.addChild(7, null);
+       bigTree.addChild(3, null);
+       bigTree.addChild(4, null); 
+       bigTree.addChild(14, null); 
+       StringBuilder bigTreeStr = new StringBuilder();
+       st.traverseInOrder(bigTree.root, bigTreeStr); 
+       System.out.println("bigTree string: " + bigTreeStr); 
+       
+       
+       BinaryTree smallTree = new BinaryTree(1);
+       smallTree.addChild(3, null);
+       smallTree.addChild(4, null);
+       StringBuilder smallTreeStr = new StringBuilder();
+       st.traverseInOrder(smallTree.root, smallTreeStr);  
+       System.out.println("smallTree string: " + smallTreeStr);
+       
+       boolean containsTree = bigTreeStr.toString().indexOf(smallTreeStr.toString()) >= 0 ;  
+       System.out.println("contains subtree " + containsTree);      
+   }
+   
+   
+
+}
