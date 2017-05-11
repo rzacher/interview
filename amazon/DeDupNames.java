@@ -1,6 +1,10 @@
 package amazon;
 
+import java.util.Collection;
 import java.util.HashMap; 
+import java.util.HashSet;
+import java.util.List; 
+
 /**
  * Given a list of names with synonyms, dedup the list until for each name, you can 
  * look up the full list of names. 
@@ -17,7 +21,8 @@ public class DeDupNames {
 				         {"robert", "roberto"},
 		                 {"mary", "marieke"},
 		                 {"miriam", "mary"},
-		                 {"bobby", "robert"}};
+		                 {"bobby", "robert"},
+		                 {"robby", "bobby"}};
 		 
 		return names;         
 	}
@@ -60,11 +65,36 @@ public class DeDupNames {
 		    String key1 = entry[0];
 		    String key2 = entry[1];
 			// for each key, get the nameset and merge the smaller set into the bigger set.
-		    NameSet set1 = nameSet.get(key1); 
-		
-			// point the key for the smaller set to the bigger set
+		    NameSet set1 = nameSets.get(key1); 
+		    NameSet set2 = nameSets.get(key2); 
+		    
+		    // Merge the smaller set to the bigger set
+		    if (set1.size() >= set2.size()) {
+		    	set1.merge(set2);
+		    	// point the key for the smaller set to the bigger set
+		    	nameSets.put(key2, set1); 
+		    } else {
+		    	set2.merge(set1);
+		    	nameSets.put(key1, set2); 
+		    }
 		}
-		
+	}
+	
+	public void printUniqueNameSets() {
+		// put the NameSets into a set and print the set elements
+		HashSet<NameSet> setOfNameSets = new HashSet<NameSet>(); 
+	    Collection<NameSet> values = nameSets.values();
+	    
+	    for (NameSet value: values) {
+	    	setOfNameSets.add(value); 
+	    }
+	    
+	    Object[] nsArray =  setOfNameSets.toArray();
+	    
+	    for (int i=0; i<nsArray.length; i++) {
+	    	((NameSet)nsArray[i]).printNames(); 
+	    }
+	    
 		
 	}
 	
@@ -75,6 +105,8 @@ public class DeDupNames {
 		ddn.buildNameSets(names);
 		ddn.buildNameSets(names);
 		ddn.mergeNameSets(names); 
+		ddn.printUniqueNameSets(); 
+		
 		} catch (Exception e) {
 			System.out.println("Caught exception" + e.getMessage()); 
 			e.printStackTrace();
@@ -83,13 +115,43 @@ public class DeDupNames {
 	
 	// Maintains an  equivalence class for names. 
 	private class NameSet {
-		HashMap<String, String> names = new HashMap<String, String>(); 
+		HashSet<String> names = new HashSet<String>(); 
 		
 		// Add an entry 
 		public void add(String[] entry) {
-			names.put(entry[0], entry[1]); 
+			names.add(entry[0]); 
+			names.add(entry[1]); 
+		}
+		
+		public void add(String entry) {
+			names.add(entry); 
+		}
+		
+		public HashSet<String> getNames() {
+			// return a clone
+			return (HashSet<String>) names.clone(); 
+		}
+		
+		public void merge(NameSet otherSet) {
+			HashSet<String> namesClone = otherSet.getNames(); 
+		
+			for (String name: namesClone) {
+				names.add(name); 	
+			}
+		}
+		
+		public int size() {
+			return names.size(); 
+		}
+		
+		public void printNames() {
+			for (String name: getNames()) {
+				System.out.print(name + " ");
+			}
+			System.out.println(); 
 		}
 	}
 
 }
+
 
