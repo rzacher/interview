@@ -7,6 +7,7 @@ import java.util.*;
 public class WordDistance {
 	public WordDistance() {}
 	
+	
 	public int findShortestDistance(String[] input, String word1, String word2) {
 	
 		int result = Integer.MAX_VALUE;
@@ -17,6 +18,7 @@ public class WordDistance {
 		return result; 
 	}
 	
+	// make a list of locations by index for each word
 	private ArrayList<ArrayList<Integer>> populateLocations(String[] input, String word1, String word2) {
 		ArrayList<ArrayList<Integer>> locationArray = new ArrayList<ArrayList<Integer>>();
 		ArrayList<Integer> location1 = new ArrayList<Integer>();
@@ -36,6 +38,7 @@ public class WordDistance {
 	    return locationArray; 
 	}
 	
+	// find the shortest distance between the two word lists. One for each word. 
 	private int findMin(ArrayList<Integer> word1Locations, ArrayList<Integer> word2Locations) {
 		if ((word1Locations == null) || (word2Locations == null)) {
 			throw new NullPointerException("");
