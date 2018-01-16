@@ -1,4 +1,4 @@
-package amazon;
+package com.amazon;
 
 public class MergeSort {
 	int[] input;

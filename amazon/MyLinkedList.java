@@ -1,4 +1,4 @@
-package amazon;
+package com.amazon;
 
 public class MyLinkedList {
 	 private Node head; 
@@ -45,12 +45,13 @@ public class MyLinkedList {
     	 Node currentNode = head; 
     	 Node nextNode = head.next; 
     	 head.next = null; // Set to null since this is now the tail
-    	 Node nextNextNode; 
+    	 Node nextNextNode = null; 
+    	 Node loopNode; 
     	 
     	 while (nextNode != null) {
     		 loopNode =  nextNode.next;
     		 nextNode.next = currentNode;
-    		 currentNode =  nextNextNode; 	 
+    		 currentNode = nextNextNode; 	 
     	 }
     	 
     	 

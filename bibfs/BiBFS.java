@@ -4,7 +4,7 @@
  * Scalability chapter. 
  **/
  
- package bibfs; 
+ package com.bibfs; 
  
  import java.util.*;
  

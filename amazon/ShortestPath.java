@@ -1,6 +1,6 @@
 // Class to find the shortest path through  a graph. Implementation of Dijkstra's algorithm. 
 //www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/
-package amazon;
+package com.amazon;
 
 import java.util.*;
 

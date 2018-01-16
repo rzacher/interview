@@ -1,4 +1,6 @@
-import java.utils.*;
+package com.amazon;
+
+import java.util.*;
 
 public class SelectionSort {
 
@@ -22,7 +24,7 @@ public class SelectionSort {
     for (int i=0; i<array.length; i++) {
        int iMin = i; // init 
 
-       for (j=i; j<array.length; j++) {
+       for (int j=i; j<array.length; j++) {
 
 
        }

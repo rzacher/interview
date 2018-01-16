@@ -1,4 +1,4 @@
-package synch;
+package com.synch;
 
 import java.util.Random;
 

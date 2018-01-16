@@ -1,4 +1,4 @@
-package bibfs;
+package com.bibfs;
 
 import java.util.*;
 

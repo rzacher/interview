@@ -1,4 +1,4 @@
-package synch;
+package com.synch;
 
 import java.util.HashMap;
 import java.util.Set;

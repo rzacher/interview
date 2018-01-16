@@ -1,4 +1,4 @@
-package amazon;
+package com.amazon;
 // From hard section 17.5 of CrackingTheCodingInterview
 // Find the longest word composed of other words in the list 
 

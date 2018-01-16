@@ -1,4 +1,4 @@
-package synch;
+package com.synch;
 
 public class Drop {
 	 // Message sent from producer

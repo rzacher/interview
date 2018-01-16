@@ -1,4 +1,4 @@
-package learn;
+package com.amazon;
 
 public class BinarySearch {
 	int count = 0; 

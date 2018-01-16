@@ -1,4 +1,5 @@
-package synch;
+package com.synch;
+
 // example from official java tutorials 
 public class SimpleThreads {
 	public static void threadMessage(String message) {
@@ -46,9 +47,7 @@ public class SimpleThreads {
 	    		}
 	    	}
 	    	
-	    }
-	    
+	    } // end main  
 	   
-	} // end main
+} 
 
-}

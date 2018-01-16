@@ -1,6 +1,6 @@
 // Holds data for a BFS search on part of a graph.
 
-package bibfs;
+package com.bibfs;
 
 import java.util.*; 
 

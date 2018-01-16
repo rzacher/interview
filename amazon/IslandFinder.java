@@ -1,4 +1,4 @@
-package amazon;
+package com.amazon;
 
 /*
  * IslandFinder counts the pieces of land in a world of water. 

@@ -1,4 +1,4 @@
-package synch;
+package com.synch;
 
 public class Deadlock {
 	
