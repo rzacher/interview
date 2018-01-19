@@ -1,4 +1,4 @@
-package newstuff;
+package com.newstuff;
 // stacks and queues problem 3.1 Cracking the coding interview
 
 public class ThreeStacksInOne {

@@ -1,4 +1,4 @@
-package newstuff;
+package com.newstuff;
 
 public class Generics<K, V extends Number> {
 	K key;

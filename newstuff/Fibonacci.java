@@ -2,7 +2,7 @@
  * Program to calculate a Fibonacci number using dynamic programming. 
  * i.e. we store the values for earlier results to reduce Big O time. 
  **/ 
-
+package com.newstuff;
 import java.util.*; 
 
 

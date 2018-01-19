@@ -1,6 +1,5 @@
-package newstuff;
+package com.newstuff;
 
-import newstuff.SimpleNode; 
 
 /** Partition the list around x. All members less than x on one side and the  rest 
  * on the other side. 

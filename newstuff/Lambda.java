@@ -1,4 +1,4 @@
-package newstuff; 
+package com.newstuff; 
 
 import java.util.*;
 
@@ -15,7 +15,7 @@ public class Lambda {
    
    interface GreetingService {
      void sayMessage(String message); 
-   } 
+   } S
 
     public static void main(String[] args) {
         Lambda tester = new Lambda(); 

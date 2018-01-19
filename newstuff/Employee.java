@@ -1,4 +1,4 @@
-package newstuff;
+package com.newstuff;
 
 
 public class Employee implements java.io.Serializable

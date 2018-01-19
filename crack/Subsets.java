@@ -1,4 +1,4 @@
-package crack;
+package com.crack;
 import java.util.*;
 /*
  * Base on page 323 of cracking the code. 

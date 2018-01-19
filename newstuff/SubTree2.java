@@ -1,8 +1,9 @@
-package newstuff; 
+package com.newstuff; 
 
 import java.util.*;
-import amazon.BinaryTree;
-import amazon.BinaryTreeNode; 
+import com.amazon.BinaryTree;
+import com.amazon.BinaryTreeNode; 
+
 
 public class SubTree2  {
 

@@ -1,4 +1,4 @@
-package newstuff;
+package com.newstuff;
 
 public class Box<T> {
 	 private T t = null; 

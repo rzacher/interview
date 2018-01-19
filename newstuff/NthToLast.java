@@ -1,5 +1,11 @@
-// Find the n'th to last element of a linked list by using two pointers
-// advancing together separated by k elements. 
+/*Find the n'th to last element of a linked list by using two pointers
+First move reference pointer to n nodes from head. Now move both pointers 
+one by one until reference pointer reaches end. Now main pointer will 
+point to nth node from the end. Return main pointer.
+advancing together separated by k elements. 
+ */
+ 
+package com.newstuff; 
 import java.util.*; 
 
 public class NthToLast {

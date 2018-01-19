@@ -4,7 +4,7 @@
  * biggest on top
 **/
 
-package newstuff; 
+package com.newstuff; 
 
 import java.util.*;
 

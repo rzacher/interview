@@ -1,6 +1,6 @@
 // Simple node for linkedList exercises
 
-package newstuff;
+package com.newstuff;
 
 public class SimpleNode {
      SimpleNode next = null;

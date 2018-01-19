@@ -1,4 +1,4 @@
-package newstuff;
+package com.newstuff;
 
 import java.io.*;
 

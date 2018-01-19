@@ -2,7 +2,7 @@
 // Bottom boxes must be larger in all dimensions than a box above it. 
 // Find the stack with the largest height. 
 
-package newstuff; 
+package com.newstuff; 
 
 
 import java.util.*;
