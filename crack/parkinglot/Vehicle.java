@@ -1,22 +1,29 @@
+package com.crack.parkinglot;
 import java.util.*;
 
 public abstract class Vehicle {
 
-  Size size;
+  int size;
   int spotsNeeded;
   ArrayList<Spot> spots = new ArrayList<Spot>(); 
+  
+  public Vehicle( int size, int spotsNeeded) {
+	  this.size = size;
+	  this.spotsNeeded = spotsNeeded;   
+  }
   
   int getSpotsNeeded() {
     return spotsNeeded;
   } 
 
   Size getSize() {
-    return size;
+    return new Size(size);
   }
 
   void park(ArrayList<Spot> spots) {
     for (Spot spot: spots) {
       this.spots.add(spot); 
+    }
   }
 
   // Return the list of spots that I'm leaving

@@ -1,8 +1,11 @@
+
+package com.crack.parkinglot;
+
 import java.util.*;
 
-public class Truck {
+public class Truck extends Vehicle{
 
     public Truck() {
-       super(Size.Medium, 2); 
+       super(Size.MEDIUM, 2); 
     }
 }
