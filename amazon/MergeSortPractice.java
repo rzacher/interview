@@ -19,38 +19,43 @@ public class MergeSortPractice {
 		return this.array; 
 	}
 	
-	// Use the helper array to sort into the main array
-	private void merge(int low, int middle, int high) {
-		// First copy the array from low to high into the helper
-		for (int i=low; i<high; i++) {
-			helper[i]=array[i];
-		}
-		// Now sort back into the main array, the smaller element on the left
-	    int i = low; 
-	    int j = middle+ 1; 
-	    int k = low; 
-	    while ((i<= middle) && (j <= high)) {
-			if (helper[i] < helper[j]) {
+	protected void merge(int low, int middle, int high) {
+		 
+		 // Copy both parts into the helper array
+		 for (int i=low; i<=high;  i++) {
+			 helper[i] =array[i];
+		 }
+		 
+		 // Copy the smallest values from the helper array back into the original array
+		 int i = low;
+		 int j = middle + 1;
+		 int k = low; // k is for thearray array
+		 while ((i <= middle) && (j <= high)) {
+			 if (helper[i] < helper[j]) {
 				array[k] = helper[i];
-				i++;  
-			} else {
+				 i++;		 
+			 } else {
 				array[k] = helper[j];
-				j++; 
-			}
-			k++;
-	    }
-	    // Now copy remainders 
-	    while (i <= middle) {
-	    	array[k] = helper[i];
-			i++; 
-			k++; 
-	    }  
-	    while (j <= high) {
-	    	array[k] = helper[j];
-			j++; 
-			k++;
-	    }
-	}
+				 j++;
+			 }
+			 k++;  
+		 }
+		 
+		 // Now copy the remainder of one side to the rest of the array
+		 while (i <= middle)  {
+			array[k] = helper[i];
+			 i++;
+			 k++;
+		 }
+		 
+		 while (j <= high) {
+			array[k] = helper[j];
+			 j++;
+			 k++;
+		 }	  
+	 }
+	
+	
 	private void mergesort(int low, int high) {
 		if (low < high) {
 			System.out.println(low + " " + high);
