@@ -1,4 +1,4 @@
-package newstuff;
+package com.newstuff;
 
 // Use the sieve of eratosthenes. 
 // Find the list of primes less than max

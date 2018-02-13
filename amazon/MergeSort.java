@@ -76,18 +76,12 @@ public class MergeSort {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-	
 		// Create the test array
-		int[] input = new int[] {1, 15, 100, 9, 35, 5};
+		int[] input = new int[] {7,20,4,85,33,5,10,9};
 		
 		MergeSort mergeSort = new MergeSort(input);
 		mergeSort.sort(input);
 		mergeSort.printResult();
-		
-		
-		
-		
-
 	}
 
 }
