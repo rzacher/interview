@@ -7,6 +7,7 @@ public class PrimeNumber {
 	 boolean[] flags; 
 	 
 	// set all flags to true other than 0 and 1
+	// false = prime
 	private void init(boolean[] flags) {
 		flags[0] = false; 
 		flags[1] = false; 
@@ -21,10 +22,14 @@ public class PrimeNumber {
 	  boolean nextFlag=false;
 	  current +=1; // advance to next
 	  
-	  while ((nextFlag == true) && (current <= max)){
+	  while (current <= max) {
 	     nextFlag = flags[current];
+	     if (nextFlag == true) {
+	        break;
+	     }
 	     current++;
 	  }
+	  flags[current] = false; 
 	  return current;
 	}
 	
@@ -36,8 +41,8 @@ public class PrimeNumber {
 		primes[primeIndex] = current;
 		  
 		while (current <= max) {
-			// Set all multiples of this prime to false, 
-			// leave the prime itself true
+			// Set all multiples of this prime to true, 
+			// leave the prime itself false
 			for (int i=2*current; i<max; i+=current) {
 				flags[i] = false; 
 			}
@@ -57,7 +62,7 @@ public class PrimeNumber {
 	
 	public static void main(String[] args) {
         System.out.println("Running");
-		int max = 7; 
+		int max = 20; 
 		PrimeNumber pn = new PrimeNumber();
 		int[] primes = pn.getPrimes(max); 
 		for (int i=0; i< primes.length; i++) {
