@@ -68,7 +68,7 @@ class BSTtoDLL
  public static void main(String[] args) 
  {
      // Let us create the tree as shown in above diagram
-     BinaryTree tree = new BinaryTree();
+     BSTtoDLL tree = new BSTtoDLL();
      tree.root = new Node(10);
      tree.root.left = new Node(12);
      tree.root.right = new Node(15);
@@ -84,11 +84,4 @@ class BSTtoDLL
 
  }
 }
-//This code has been contributed by Mayank Jaiswal(mayank_24)
-
-
-Output:
-
-25 12 30 10 36 15
-
-Note that use of static variables like above is not a recommended practice (we have used static 
+ 
