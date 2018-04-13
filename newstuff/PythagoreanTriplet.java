@@ -57,6 +57,15 @@ public class PythagoreanTriplet {
 		
 	}
 	
+	static void testConditional() {
+	  int a=1;
+	  int b=0;
+	  
+	  int result = a==1?1:2;
+	  System.out.println("result=" + result);
+	  
+	}
+	
 	static boolean isTriplet(int a, int b, int c) { 
 		if (a*a + b*b == c*c) return true;
 		else return false; 
@@ -73,6 +82,8 @@ public class PythagoreanTriplet {
 		int[] input = {1,2,3,4,5,6,7,8,9,10,11,12, 13, 14, 15,16,17,18,19,20,21,22,23,24};
 		findTripletsBrute(input);
 		findTripletsBetter(input);
+		testConditional(); 
+		
 	}
 
 }
