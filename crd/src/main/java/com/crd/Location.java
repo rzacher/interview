@@ -15,31 +15,31 @@ public class Location {
 	ConcurrentHashMap<Long, Reservation> reservations = new ConcurrentHashMap<Long, Reservation>();
 	HashMap<Long, Customer> customers = new HashMap<Long, Customer>(); 
 
-	public void addCar(Car car) {
+	synchronized public  void addCar(Car car) {
        cars.put(car.getId(), car); 
 	}
 
-	public void removeCar(Long id) {
+	synchronized public void removeCar(Long id) {
 	    cars.remove(id); 
 	}
 
-	public Car getCar(Long id) {
+	synchronized public Car getCar(Long id) {
 	    return cars.get(id); 
 	}
 
-	public void addCustomer(Customer customer) {
+	synchronized public void addCustomer(Customer customer) {
 		customers.put(customer.getId(), customer); 
 	}
 
-    public void removeCustomer(Long id) {
+    synchronized public void removeCustomer(Long id) {
 		customers.remove(id); 
 	}
 
-	public Customer getCustomer(Long id) {
+	synchronized public Customer getCustomer(Long id) {
 		return customers.get(id);
 	}
 
-    public void addReservation(Reservation reservation) throws ConcurrentModificationException {
+    synchronized public void addReservation(Reservation reservation) throws ConcurrentModificationException {
     	// Check that the car is  available in the requested period
     	Long carId = reservation.getCarId(); 
     	LinkedList availableCars = findAvailableCars(reservation.getDateIn(), reservation.getDateOut()); 
@@ -50,11 +50,11 @@ public class Location {
     	}
     }
 
-    public void removeReservation(Long id) {
+    synchronized public void removeReservation(Long id) {
     	reservations.remove(id);
     }
 
-    public Reservation getReservation(Long id) {
+    synchronized public Reservation getReservation(Long id) {
     	return reservations.get(id);
     }
 
