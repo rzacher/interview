@@ -123,4 +123,96 @@ public class LocationTest {
             fail("Caught ParseException creating date " + pe.getMessage());
         } 
     }
+
+    // Try to reserve car 1  which is already reserved with startDate overlapping with the already 
+    // reserverd car
+    @Test 
+    public void reserveCarStartDateInMiddleTest() {
+        try {
+            boolean caughtExpectedException = false; 
+            Location location = new Location(); 
+            reserve2Cars(location); 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            Date dateStart = dateFormat.parse("01-01-2001 18:00:00");
+            Date dateEnd = dateFormat.parse("01-02-2001 18:00:00");
+            try {
+              Reservation res = new Reservation(new Long(1) , new Long(1), dateStart, dateEnd, new Long(1));
+              location.addReservation(res); 
+            } catch (ConcurrentModificationException ce) {
+                caughtExpectedException = true; 
+            }
+            assertTrue("Caught expected ConcurrentModificationException", caughtExpectedException);
+            // Only Car 3 should be available
+        } catch (ParseException pe) {
+            fail("Caught ParseException creating date " + pe.getMessage());
+        } 
+    }
+
+    // Try to reserve car 1  which is already reserved with endDate overlapping with the already 
+    // reserverd car
+    @Test 
+    public void reserveCarEndDateInMiddleTest() {
+        try {
+            boolean caughtExpectedException = false; 
+            Location location = new Location(); 
+            reserve2Cars(location); 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            Date dateStart = dateFormat.parse("01-01-2001 01:00:00");
+            Date dateEnd = dateFormat.parse("01-02-2001 01:00:00");
+            try {
+              Reservation res = new Reservation(new Long(1) , new Long(1), dateStart, dateEnd, new Long(1));
+              location.addReservation(res); 
+            } catch (ConcurrentModificationException ce) {
+                caughtExpectedException = true; 
+            }
+            assertTrue("Caught expected ConcurrentModificationException", caughtExpectedException);
+            // Only Car 3 should be available
+        } catch (ParseException pe) {
+            fail("Caught ParseException creating date " + pe.getMessage());
+        } 
+    }
+
+    @Test 
+    public void reserveCarEndBeforeAndStartAfterReservedDates() {
+        try {
+            boolean caughtExpectedException = false; 
+            Location location = new Location(); 
+            reserve2Cars(location); 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            Date dateStart = dateFormat.parse("01-01-2001 01:00:00");
+            Date dateEnd = dateFormat.parse("01-02-2001 08:00:00");
+            try {
+              Reservation res = new Reservation(new Long(1) , new Long(1), dateStart, dateEnd, new Long(1));
+              location.addReservation(res); 
+            } catch (ConcurrentModificationException ce) {
+                caughtExpectedException = true; 
+            }
+            assertTrue("Caught expected ConcurrentModificationException", caughtExpectedException);
+            // Only Car 3 should be available
+        } catch (ParseException pe) {
+            fail("Caught ParseException creating date " + pe.getMessage());
+        } 
+    }
+
+    @Test 
+    public void reserveCarNoOverlapReservedDates() {
+        try {
+            boolean caughtException = false; // must be set to false to pass
+            Location location = new Location(); 
+            reserve2Cars(location); 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            Date dateStart = dateFormat.parse("01-03-2001 01:00:00");
+            Date dateEnd = dateFormat.parse("01-04-2001 01:00:00");
+            try {
+              Reservation res = new Reservation(new Long(1) , new Long(1), dateStart, dateEnd, new Long(1));
+              location.addReservation(res); 
+            } catch (ConcurrentModificationException ce) {
+                caughtException = true; 
+            }
+            assertFalse("Caught unexpected ConcurrentModificationException", caughtException);
+            // Only Car 3 should be available
+        } catch (ParseException pe) {
+            fail("Caught ParseException creating date " + pe.getMessage());
+        } 
+    }
 }
