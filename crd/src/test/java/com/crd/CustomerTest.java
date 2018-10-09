@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 import com.crd.Customer;
 
 public class CustomerTest {
+	// Test the Customer constructor and getters. 
 	@Test
     public void constructorTest() {
        Customer customer = new Customer(new Long(1)); 

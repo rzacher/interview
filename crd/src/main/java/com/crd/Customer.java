@@ -1,3 +1,8 @@
+/**
+ * Customer class provides basic operations on a customer. 
+ */
+
+
 package com.crd; 
 
 public class Customer {

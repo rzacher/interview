@@ -13,6 +13,7 @@ import com.crd.Car;
 import com.crd.Size;
 
 public class CarTest {
+	// test the car constructor and gettors
 	@Test
     public void constructorTest() {
         Car car = new Car(Size.SMALL, new Long(1));

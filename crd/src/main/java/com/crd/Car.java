@@ -1,3 +1,7 @@
+/**
+ * Car class provides basic operations on a car. 
+ */
+
 package com.crd;
 
 

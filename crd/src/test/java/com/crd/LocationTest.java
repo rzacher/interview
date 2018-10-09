@@ -1,3 +1,8 @@
+/*
+ * LocationTest is the most important test class, since the Location class manages the cars, customers and
+ * Reservations
+ */
+
 package com.crd; 
 
 
@@ -92,7 +97,7 @@ public class LocationTest {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
             Date dateStart = dateFormat.parse("01-01-2001 12:00:00");
             Date dateEnd = dateFormat.parse("01-02-2001 12:00:00");
-	        LinkedList<Long> availableCars = location.findAvailableCars(dateStart, dateEnd);
+	        LinkedList<Long> availableCars = location.getAvailableCars(dateStart, dateEnd);
 	        // Only Car 3 should be available
 	        assertEquals("Number of avialable cars", availableCars.size(), 1);
 	        assertEquals("Available car retrieval", availableCars.getFirst(), new Long(3));

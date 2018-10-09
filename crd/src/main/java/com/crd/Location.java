@@ -1,3 +1,9 @@
+/**
+ * Location class provides basic operations on a location. A location manages customers, cars and the 
+ * reservations system. Location is responsible for orchestrating the relationships between cars, customers
+ * and Reservations. 
+ */
+
 package com.crd;
 
 import java.util.HashMap;
@@ -38,11 +44,12 @@ public class Location {
 	synchronized public Customer getCustomer(Long id) {
 		return customers.get(id);
 	}
-
+     
+     // Add a reservation. Make sure the car is available at the given time. 
     synchronized public void addReservation(Reservation reservation) throws ConcurrentModificationException {
     	// Check that the car is  available in the requested period
     	Long carId = reservation.getCarId(); 
-    	LinkedList availableCars = findAvailableCars(reservation.getDateIn(), reservation.getDateOut()); 
+    	LinkedList availableCars = getAvailableCars(reservation.getDateIn(), reservation.getDateOut()); 
     	if (availableCars.contains(carId)) {
     	   reservations.put(reservation.getId(), reservation);
     	} else {
@@ -60,7 +67,9 @@ public class Location {
 
     // Find all cars available between the in and out dates.
     // First find all the cars in use. All the other cars are free 
-    public LinkedList<Long> findAvailableCars(Date dateIn, Date dateOut) {
+    // We're not synchronizing this since it will improve performance. 
+    // Returns list of available cars. 
+    public LinkedList<Long> getAvailableCars(Date dateIn, Date dateOut) {
     	HashSet<Long> carsInUse = new HashSet<Long>(); 
     	// Walk the list  and find all cars in use between dateIn and dateOut. 
     	// The rest are available
@@ -69,19 +78,27 @@ public class Location {
  
         // while loop
         while (iterator.hasNext()) {
-        	Reservation res = iterator.next(); 
-    		if (dateOut.before(res.getDateIn())) {
-    			// car not is use
-    		} else if (dateIn.after(res.getDateOut())) {
-    			// car is not inuse
-    		} else if ( !dateIn.before(res.getDateIn()) &&  !dateOut.after(res.getDateOut())) {
-    			// We have a winner, this car is in use in the period in question
-                carsInUse.add(res.getCarId());
-    		} else {
-    			// there is some overlap
-    			carsInUse.add(res.getCarId());
-    		}
+        	try {
+	        	Reservation res = iterator.next(); 
+	        	if (res != null) {
+		    		if (dateOut.before(res.getDateIn())) {
+		    			// car not is use
+		    		} else if (dateIn.after(res.getDateOut())) {
+		    			// car is not inuse
+		    		} else if ( !dateIn.before(res.getDateIn()) &&  !dateOut.after(res.getDateOut())) {
+		    			// We have a winner, this car is in use in the period in question
+		                carsInUse.add(res.getCarId());
+		    		} else {
+		    			// there is some overlap
+		    			carsInUse.add(res.getCarId());
+		    		}
+	    	    }
+    	    } catch (ConcurrentModificationException ce) {
+    	    	// list has changed since we got the reservation values. just keep going for the rest of the cars. 
+    	    	System.out.println("Caught ConcurrentModificationException while looking for available cars. ");
+    	    }
     	}
+
     	// Now find the available cars
     	LinkedList<Long> availableCars = new LinkedList<Long>();
     	// Walk the list of all the cars, if the car is not in use, add it to the available list
